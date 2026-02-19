@@ -12,6 +12,8 @@ public class MoveLeft : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManagerFlappy.GameplayPaused) return;
+
         transform.position += Vector3.left * Time.deltaTime * speed;
     }
 }
