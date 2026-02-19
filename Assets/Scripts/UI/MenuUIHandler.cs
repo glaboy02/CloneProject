@@ -23,6 +23,9 @@ public class MenuUIHandler : MonoBehaviour
     {
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
+#elif UNITY_WEBGL
+        // WebGL does not support quitting the application, so we can redirect to a different page or simply do nothing.
+        return;
 #else
         Application.Quit();
 #endif
