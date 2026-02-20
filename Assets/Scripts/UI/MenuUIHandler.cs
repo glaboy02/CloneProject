@@ -10,13 +10,21 @@ public class MenuUIHandler : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-    public void StartPong()
+    public void StartFlappyBirdGame()
     {
         SceneManager.LoadScene(2);
     }
-    public void StartSnake()
+    public void RestartFlappyBirdGame()
+    {
+        SceneManager.LoadScene(2);
+    }
+    public void StartPong()
     {
         SceneManager.LoadScene(3);
+    }
+    public void StartSnake()
+    {
+        SceneManager.LoadScene(4);
     }
 
     public void ExitGame()
