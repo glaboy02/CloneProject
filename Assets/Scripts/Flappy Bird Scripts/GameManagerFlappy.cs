@@ -1,7 +1,10 @@
 using UnityEngine;
+using TMPro;
 
 public class GameManagerFlappy : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI scoreText;
+    private int score;
     public static GameManagerFlappy Instance { get; private set; }
 
     private void Awake()
@@ -14,6 +17,12 @@ public class GameManagerFlappy : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+
+        score = 0;
+        if (scoreText != null)
+        {
+            scoreText.text = "Score: " + score;
         }
     }
 
@@ -34,5 +43,14 @@ public class GameManagerFlappy : MonoBehaviour
     public static void SetGamePaused(bool isPaused)
     {
         GameplayPaused = isPaused;
+    }
+
+    public void IncreaseScore()
+    {
+        score++;
+        if (scoreText != null)
+        {
+            scoreText.text = "Score: " + score;
+        }
     }
 }
