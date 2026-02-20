@@ -19,7 +19,7 @@ public class FlappyController : MonoBehaviour
     {
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         animator.enabled = true;
-        GameManagerFlappy.SetGamePaused(false);
+        GameManagerFlappy.Instance.GameStart();
     }
 
     // Update is called once per frame

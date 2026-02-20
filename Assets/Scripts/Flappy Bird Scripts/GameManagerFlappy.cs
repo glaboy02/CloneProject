@@ -7,6 +7,7 @@ public class GameManagerFlappy : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI highScoreText;
+    [SerializeField] private GameObject gameOverPanel;
     private int scoreFlappyBird;
     public static GameManagerFlappy Instance { get; private set; }
 
@@ -40,6 +41,18 @@ public class GameManagerFlappy : MonoBehaviour
     {
         scoreText = GameObject.Find("FlappyScore")?.GetComponent<TextMeshProUGUI>();
         highScoreText = GameObject.Find("FlappyHighscore")?.GetComponent<TextMeshProUGUI>();
+
+        // Search through root GameObjects to find Game Over Canvas (works even if inactive)
+        GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+        foreach (GameObject root in rootObjects)
+        {
+            if (root.name == "Game Over Canvas")
+            {
+                gameOverPanel = root;
+                break;
+            }
+        }
+
         UpdateUI();
     }
 
@@ -55,11 +68,24 @@ public class GameManagerFlappy : MonoBehaviour
             highScoreText.text = "High Score: " + SaveManager.Instance.flappyBirdHighScore;
         }
     }
+    public void GameStart()
+    {
+        SetGamePaused(false);
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(false);
+        }
+    }
 
     public void GameOver()
     {
         SetGamePaused(true);
         Debug.Log("Game Over!");
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+        }
+
         if (SaveManager.Instance != null)
         {
             if (scoreFlappyBird > SaveManager.Instance.flappyBirdHighScore)
