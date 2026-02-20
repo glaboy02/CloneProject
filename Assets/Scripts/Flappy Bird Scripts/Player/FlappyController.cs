@@ -33,6 +33,7 @@ public class FlappyController : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             animator.enabled = false;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
             GameManagerFlappy.Instance.GameOver();
         }
     }
@@ -47,7 +48,8 @@ public class FlappyController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         if (other.gameObject.CompareTag("ScoreZone"))
         {
             GameManagerFlappy.Instance.IncreaseScore();

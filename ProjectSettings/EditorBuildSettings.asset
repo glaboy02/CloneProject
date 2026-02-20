@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SnakeScene.unity
     guid: 8b3a9c9d86a39864ea4e4cf6188e1cdb
+  - enabled: 1
+    path: Assets/Scenes/TicTacToeScene.unity
+    guid: 02f29e1199f2a8a468a981dbd017183a
+  - enabled: 1
+    path: Assets/Scenes/AstroidsScene.unity
+    guid: 8af8276d13b18764f9e2de2bce9c7ca1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
