@@ -69,17 +69,19 @@ public class MenuUIHandler : MonoBehaviour
         {
             switch (selectedIndex)
             {
-                case 0: // Clear Flappy Bird data
+                case 0: // Clear Blank data
+                    break;
+                case 1: // Clear Flappy Bird data
                     SaveManager.Instance.flappyBirdHighScore = 0;
                     SaveManager.Instance.SaveFlappyBirdHighScore();
                     break;
-                case 1: // Clear Pong data
+                case 2: // Clear Pong data
                         // Clear pong data
                     break;
-                case 2: // Clear Snake data
+                case 3: // Clear Snake data
                         // Clear snake data
                     break;
-                case 3: // Clear All data
+                case 4: // Clear All data
                     SaveManager.Instance.flappyBirdHighScore = 0;
                     SaveManager.Instance.SaveFlappyBirdHighScore();
                     break;

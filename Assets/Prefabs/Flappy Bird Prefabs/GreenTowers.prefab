@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3083526008997519800}
   - component: {fileID: 6143275695192814115}
   - component: {fileID: 4350915876799450277}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GreenTowers
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1157c29740ef3cc49a997c55a19d46d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveLeft
-  speed: 2
+  speed: 2.5
 --- !u!114 &4350915876799450277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,7 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 651493223834032505}
   - component: {fileID: 1484669598973452615}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Big Block02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 7311090811749875440}
   - component: {fileID: 9219635985403316015}
   - component: {fileID: 7552459685044557638}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Big Block02
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -328,7 +328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7933696845915315292}
   - component: {fileID: 1358367980633016037}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Flappy Collider
   m_TagString: ScoreZone
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 2604147393859111163}
   - component: {fileID: 6445038154598429383}
   - component: {fileID: 5973493093882751590}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Med Block02
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -574,7 +574,7 @@ GameObject:
   - component: {fileID: 1460282742201484383}
   - component: {fileID: 5288552235230476930}
   - component: {fileID: 7381954972880611074}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Med Block02
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -740,7 +740,7 @@ GameObject:
   - component: {fileID: 2302105329611638109}
   - component: {fileID: 1141848427145346430}
   - component: {fileID: 3885054506385712240}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Small Block02
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -906,7 +906,7 @@ GameObject:
   - component: {fileID: 1518079655489656919}
   - component: {fileID: 4870941059902595038}
   - component: {fileID: 3620565792404128919}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Small Block02
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -1070,7 +1070,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2084752998217384754}
   - component: {fileID: 4030411729240881538}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Big Block02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1160,7 +1160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3126375188074558534}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GreenTowerBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1198,7 +1198,7 @@ GameObject:
   - component: {fileID: 3733509055955209597}
   - component: {fileID: 8981308052215764119}
   - component: {fileID: 1584091967136965991}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Big Block02
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -1361,7 +1361,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3488506923580776822}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GreenTowerTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
