@@ -35,7 +35,8 @@ public class BallController : MonoBehaviour
 
         if (other.gameObject.CompareTag("ScoreZone"))
         {
-            
+            GameManager.Instance.IncreasePongScore(other.gameObject.name);
+            Debug.Log(other.gameObject.name);
         }
     }
 }

@@ -2476,6 +2476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1076670322}
   - component: {fileID: 1076670321}
+  - component: {fileID: 1076670323}
   m_Layer: 0
   m_Name: Game Manager Flappy
   m_TagString: Untagged
@@ -2490,7 +2491,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1076670320}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20d3c8accb9aa814e80a81d268615d52, type: 3}
   m_Name: 
@@ -2513,6 +2514,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1076670323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076670320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d3c8accb9aa814e80a81d268615d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManagerFlappy
+  scoreText: {fileID: 720485860}
+  highScoreText: {fileID: 620267853}
+  gameOverPanel: {fileID: 403436060}
 --- !u!1 &1138415163
 GameObject:
   m_ObjectHideFlags: 0
