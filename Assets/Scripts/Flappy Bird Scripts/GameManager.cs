@@ -3,13 +3,15 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEditor;
 
-public class GameManagerFlappy : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI highScoreText;
     [SerializeField] private GameObject gameOverPanel;
     private int scoreFlappyBird;
-    public static GameManagerFlappy Instance { get; private set; }
+    // private int pongPlayer1Score;
+    // private int pongPlayer2Score;
+    public static GameManager Instance { get; private set; }
 
     private void Awake()
     {
@@ -24,20 +26,20 @@ public class GameManagerFlappy : MonoBehaviour
         }
 
         scoreFlappyBird = 0;
-        UpdateUI();
+        UpdateFlappyBirdUI();
     }
 
     private void OnEnable()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoadedFlappyBird;
     }
 
     private void OnDisable()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded -= OnSceneLoadedFlappyBird;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoadedFlappyBird(Scene scene, LoadSceneMode mode)
     {
         scoreText = GameObject.Find("FlappyScore")?.GetComponent<TextMeshProUGUI>();
         highScoreText = GameObject.Find("FlappyHighscore")?.GetComponent<TextMeshProUGUI>();
@@ -53,10 +55,10 @@ public class GameManagerFlappy : MonoBehaviour
             }
         }
 
-        UpdateUI();
+        UpdateFlappyBirdUI();
     }
 
-    private void UpdateUI()
+    private void UpdateFlappyBirdUI()
     {
         if (scoreText != null)
         {
@@ -68,7 +70,7 @@ public class GameManagerFlappy : MonoBehaviour
             highScoreText.text = "High Score: " + SaveManager.Instance.flappyBirdHighScore;
         }
     }
-    public void GameStart()
+    public void GameStartFlappyBird()
     {
         SetGamePaused(false);
         if (gameOverPanel != null)
@@ -77,7 +79,7 @@ public class GameManagerFlappy : MonoBehaviour
         }
     }
 
-    public void GameOver()
+    public void GameOverFlappyBird()
     {
         SetGamePaused(true);
         Debug.Log("Game Over!");
@@ -103,15 +105,23 @@ public class GameManagerFlappy : MonoBehaviour
         GameplayPaused = isPaused;
     }
 
-    public void ResetScore()
+    public void ResetFlappyBirdScore()
     {
         scoreFlappyBird = 0;
-        UpdateUI();
-    }
 
-    public void IncreaseScore()
+        UpdateFlappyBirdUI();
+    }
+    // public void ResetPongScore()
+    // {
+    //     pongPlayer1Score = 0;
+    //     pongPlayer2Score = 0;
+    //     UpdateFlappyBirdUI();
+    // }
+
+    public void IncreaseFlappyBirdScore()
     {
         scoreFlappyBird++;
-        UpdateUI();
+
+        UpdateFlappyBirdUI();
     }
 }

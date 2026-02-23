@@ -17,7 +17,7 @@ public class SpawnObstacles : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManagerFlappy.GameplayPaused)
+        if (GameManager.GameplayPaused)
         {
             StopAllCoroutines();
         }

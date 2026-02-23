@@ -14,22 +14,31 @@ public class MenuUIHandler : MonoBehaviour
     }
     public void StartFlappyBirdGame()
     {
-        if (GameManagerFlappy.Instance != null)
+        if (GameManager.Instance != null)
         {
-            GameManagerFlappy.Instance.ResetScore();
+            GameManager.Instance.ResetFlappyBirdScore();
         }
         SceneManager.LoadScene(2);
     }
     public void RestartFlappyBirdGame()
     {
-        if (GameManagerFlappy.Instance != null)
+        if (GameManager.Instance != null)
         {
-            GameManagerFlappy.Instance.ResetScore();
+            GameManager.Instance.ResetFlappyBirdScore();
         }
         SceneManager.LoadScene(2);
     }
     public void StartPong()
     {
+        SceneManager.LoadScene(3);
+    }
+
+    public void RestartPongGame()
+    {
+        // if (GameManager.Instance != null)
+        // {
+        //     GameManager.Instance.ResetPongScore();
+        // }
         SceneManager.LoadScene(3);
     }
     public void StartSnake()

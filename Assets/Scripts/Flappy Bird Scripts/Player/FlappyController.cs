@@ -19,7 +19,7 @@ public class FlappyController : MonoBehaviour
     {
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         animator.enabled = true;
-        GameManagerFlappy.Instance.GameStart();
+        GameManager.Instance.GameStartFlappyBird();
     }
 
     // Update is called once per frame
@@ -34,13 +34,13 @@ public class FlappyController : MonoBehaviour
         {
             animator.enabled = false;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            GameManagerFlappy.Instance.GameOver();
+            GameManager.Instance.GameOverFlappyBird();
         }
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (GameManagerFlappy.GameplayPaused) return;
+        if (GameManager.GameplayPaused) return;
 
         if (context.performed)
         {
@@ -52,7 +52,7 @@ public class FlappyController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ScoreZone"))
         {
-            GameManagerFlappy.Instance.IncreaseScore();
+            GameManager.Instance.IncreaseFlappyBirdScore();
         }
     }
 }
