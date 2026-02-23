@@ -38,7 +38,14 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoadedFlappyBird;
     }
+    public static bool GameplayPaused { get; private set; }
 
+    public static void SetGamePaused(bool isPaused)
+    {
+        GameplayPaused = isPaused;
+    }
+
+    #region Flappy Bird Management
     private void OnSceneLoadedFlappyBird(Scene scene, LoadSceneMode mode)
     {
         scoreText = GameObject.Find("FlappyScore")?.GetComponent<TextMeshProUGUI>();
@@ -97,14 +104,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
-    public static bool GameplayPaused { get; private set; }
-
-    public static void SetGamePaused(bool isPaused)
-    {
-        GameplayPaused = isPaused;
-    }
-
     public void ResetFlappyBirdScore()
     {
         scoreFlappyBird = 0;
@@ -124,4 +123,8 @@ public class GameManager : MonoBehaviour
 
         UpdateFlappyBirdUI();
     }
+    #endregion
+
+
+    
 }
