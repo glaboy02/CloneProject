@@ -18,7 +18,15 @@ public class PongPlayerController : MonoBehaviour
     {
         moveInput = context.ReadValue<Vector2>().y;
         rb.linearVelocity = new Vector2(0f, moveInput * moveSpeed);
+    }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        // if (other.gameObject.CompareTag("Ball"))
+        // {
+        //     // Add logic for ball collision, e.g., play sound, increase score, etc.
+
+        // }
     }
 
 }

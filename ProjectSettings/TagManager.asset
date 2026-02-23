@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - ScoreZone
+  - Ball
   layers:
   - Default
   - TransparentFX
