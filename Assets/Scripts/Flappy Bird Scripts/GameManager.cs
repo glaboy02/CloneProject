@@ -39,11 +39,13 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoadedFlappyBird;
+        SceneManager.sceneLoaded += OnSceneLoadedPong;
     }
 
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoadedFlappyBird;
+        SceneManager.sceneLoaded -= OnSceneLoadedPong;
     }
     public static bool GameplayPaused { get; private set; }
 
@@ -165,6 +167,7 @@ public class GameManager : MonoBehaviour
             winPlayer1Panel.SetActive(false);
             winPlayer2Panel.SetActive(false);
         }
+        ResetPongScore();
     }
 
     public void GameOverPong(int winningPlayer)

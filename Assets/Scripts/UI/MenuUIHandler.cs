@@ -31,14 +31,18 @@ public class MenuUIHandler : MonoBehaviour
     public void StartPong()
     {
         SceneManager.LoadScene(3);
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ResetPongScore();
+        }
     }
 
     public void RestartPongGame()
     {
-        // if (GameManager.Instance != null)
-        // {
-        //     GameManager.Instance.ResetPongScore();
-        // }
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ResetPongScore();
+        }
         SceneManager.LoadScene(3);
     }
     public void StartSnake()
