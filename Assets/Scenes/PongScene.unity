@@ -1965,7 +1965,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!212 &1130042201
 SpriteRenderer:
@@ -2053,7 +2053,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 569335110b2d00543889c7a645fe36fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallController
-  initialSpeed: 8
+  initialSpeed: 5
+  maxSpeed: 15
+  speedIncreaseMultiplier: 1.05
+  launchDelay: 2.5
 --- !u!1 &1238023614
 GameObject:
   m_ObjectHideFlags: 0
