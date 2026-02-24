@@ -36,6 +36,18 @@ public class GameManager : MonoBehaviour
         UpdatePongUI();
     }
 
+    private void FixedUpdate()
+    {
+        if (SceneManager.GetActiveScene().name == "PongScene")
+        {
+            if (pongPlayer1Score >= 5 || pongPlayer2Score >= 5)
+            {
+                GameOverPong();
+            }
+        }
+
+    }
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoadedFlappyBird;
@@ -143,11 +155,23 @@ public class GameManager : MonoBehaviour
             if (root.name == "Game Over Canvas")
             {
                 gameOverPanel = root;
+
+                Transform winPlayer1Transform = root.transform.Find("winPlayer1");
+                Transform winPlayer2Transform = root.transform.Find("winPlayer2");
+
+                if (winPlayer1Transform != null)
+                    winPlayer1Panel = winPlayer1Transform.gameObject;
+
+                if (winPlayer2Transform != null)
+                    winPlayer2Panel = winPlayer2Transform.gameObject;
+
                 break;
             }
+
         }
 
         UpdatePongUI();
+        GameStartPong();
     }
 
     private void UpdatePongUI()
@@ -170,16 +194,20 @@ public class GameManager : MonoBehaviour
         ResetPongScore();
     }
 
-    public void GameOverPong(int winningPlayer)
+    public void GameOverPong()
     {
+        // if (pongPlayer1Score >= 5 || pongPlayer2Score >= 5)
+        // {
+        //     return; // Prevent multiple game over triggers
+        // }
         SetGamePaused(true);
         Debug.Log("Game Over!");
 
-        if (winningPlayer == 1 && winPlayer1Panel != null)
+        if (pongPlayer1Score >= 5 && winPlayer1Panel != null)
         {
             winPlayer1Panel.SetActive(true);
         }
-        else if (winningPlayer == 2 && winPlayer2Panel != null)
+        else if (pongPlayer2Score >= 5 && winPlayer2Panel != null)
         {
             winPlayer2Panel.SetActive(true);
         }
@@ -204,14 +232,13 @@ public class GameManager : MonoBehaviour
 
     public void IncreasePongScore(string player)
     {
-        Debug.Log("IncreasePongScore called for " + player);
         if (player == "LeftLine")
         {
-            pongPlayer1Score++;
+            pongPlayer2Score++;
         }
         else if (player == "RightLine")
         {
-            pongPlayer2Score++;
+            pongPlayer1Score++;
         }
 
         UpdatePongUI();

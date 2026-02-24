@@ -16,6 +16,8 @@ public class PongPlayerController : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        if (GameManager.GameplayPaused) return;
+
         moveInput = context.ReadValue<Vector2>().y;
         rb.linearVelocity = new Vector2(0f, moveInput * moveSpeed);
     }

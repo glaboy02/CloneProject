@@ -33,7 +33,7 @@ public class MenuUIHandler : MonoBehaviour
         SceneManager.LoadScene(3);
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.ResetPongScore();
+            GameManager.Instance.GameStartPong();
         }
     }
 
@@ -41,7 +41,7 @@ public class MenuUIHandler : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.ResetPongScore();
+            GameManager.Instance.GameStartPong();
         }
         SceneManager.LoadScene(3);
     }
