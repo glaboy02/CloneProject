@@ -49,13 +49,38 @@ public class MenuUIHandler : MonoBehaviour
     {
         SceneManager.LoadScene(4);
     }
+    public void RestartSnakeGame()
+    {
+        if (GameManager.Instance != null)
+        {
+            // GameManager.Instance.GameStartSnake();
+        }
+        SceneManager.LoadScene(4);
+    }
 
     public void StartTicTacToe()
     {
         SceneManager.LoadScene(5);
     }
+    public void RestartTicTacToeGame()
+    {
+        if (GameManager.Instance != null)
+        {
+            // GameManager.Instance.GameStartTicTacToe();
+        }
+        SceneManager.LoadScene(5);
+    }
+
     public void StartAstroids()
     {
+        SceneManager.LoadScene(6);
+    }
+    public void RestartAstroidsGame()
+    {
+        if (GameManager.Instance != null)
+        {
+            // GameManager.Instance.GameStartAstroids();
+        }
         SceneManager.LoadScene(6);
     }
 
