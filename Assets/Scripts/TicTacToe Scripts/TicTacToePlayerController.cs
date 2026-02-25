@@ -5,9 +5,9 @@ using TMPro;
 
 public class TicTacToePlayerController : MonoBehaviour
 {
-    [SerializeField] private GameObject[] squares; // Assign in inspector
-    [SerializeField] private GameObject player1Winner; // Assign in inspector
-    [SerializeField] private GameObject player2Winner; // Assign in inspector
+    [SerializeField] private GameObject[] squares;
+    [SerializeField] private GameObject player1Winner;
+    [SerializeField] private GameObject player2Winner;
     private int[][] winConditions = new int[][]
     {
         new int[] {0, 1, 2}, // Row 1
@@ -21,14 +21,13 @@ public class TicTacToePlayerController : MonoBehaviour
     };
 
     private bool winnerDeclared = false; // To prevent multiple win declarations
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     private void Awake()
     {
         player1Winner.SetActive(false);
         player2Winner.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (GameManager.GameplayPaused)
@@ -40,21 +39,11 @@ public class TicTacToePlayerController : MonoBehaviour
             Debug.LogError("Squares array is not assigned or empty!");
             return;
         }
-        if (squares[0].GetComponent<TicTacToeZone>().GetClickCount() > 3)
+        if (squares[0].GetComponent<TicTacToeZone>().GetClickCount() > 5)
         {
             CheckWinCondition();
         }
     }
-
-    // public void ClickSquare(InputAction.CallbackContext context)
-    // {
-    //     if (context.performed)
-    //     {
-    //         Debug.Log("Square Clicked");
-    //         // context.ReadValue<Vector2>(); // Get the click position if needed
-    //         Debug.Log("Click position: " + Mouse.current.position.ReadValue());
-    //     }
-    // }
 
     public void CheckWinCondition()
     {

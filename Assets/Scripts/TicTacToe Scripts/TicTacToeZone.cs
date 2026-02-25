@@ -11,6 +11,9 @@ public class TicTacToeZone : MonoBehaviour, IPointerClickHandler
     [HideInInspector] public bool IsXActive => X.activeSelf;
     [HideInInspector] public bool IsOActive => O.activeSelf;
     private static int clickCount = 1; // To track the number of clicks for toggling
+
+    private static bool switchPlayer = false; // To track player turns
+
     public int GetClickCount()
     {
         return clickCount;
@@ -22,6 +25,8 @@ public class TicTacToeZone : MonoBehaviour, IPointerClickHandler
         O.SetActive(false);
 
         clickCount = 1; // Reset click count when the game starts
+
+        switchPlayer = false; // Reset player turn when the game starts
 
         GameManager.SetGamePaused(false);
     }
@@ -41,15 +46,17 @@ public class TicTacToeZone : MonoBehaviour, IPointerClickHandler
         {
             return;
         }
-        else if (clickCount % 2 == 0)
+        else if (switchPlayer)
         {
             X.SetActive(true);
             UpdatePlayerTurnText();
+            switchPlayer = false;
         }
         else
         {
             O.SetActive(true);
             UpdatePlayerTurnText();
+            switchPlayer = true;
         }
     }
 
@@ -57,7 +64,7 @@ public class TicTacToeZone : MonoBehaviour, IPointerClickHandler
     {
         if (playerTurnText != null)
         {
-            if (clickCount % 2 == 0)
+            if (switchPlayer)
             {
                 playerTurnText.text = "Turn: \nPlayer 1";
             }
