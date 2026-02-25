@@ -1,0 +1,46 @@
+{
+    "version": 1,
+    "name": "TicTacToe_InputActions",
+    "maps": [
+        {
+            "name": "Player1",
+            "id": "e6b0d38c-d1f5-49d0-9b8d-16dfd9744a01",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "895bdad0-3a7a-44d3-ba14-8fcdca1e7263",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4138bda3-fb8f-4979-a002-cc0acbea287f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1adaf77c-88c4-4a2c-ab62-5dd2112bb4a3",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
