@@ -7,6 +7,11 @@ TagManager:
   - Obstacle
   - ScoreZone
   - Ball
+  - Bullet
+  - HugeAsteroid
+  - LargeAsteroid
+  - MediumAsteroid
+  - SmallAsteroid
   layers:
   - Default
   - TransparentFX

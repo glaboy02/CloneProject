@@ -39,8 +39,7 @@ public class AsteroidsPlayerController : MonoBehaviour
         {
             Instantiate(projectilePrefab, transform.position, transform.rotation);
         }
-
-
+        
     }
 
 }
