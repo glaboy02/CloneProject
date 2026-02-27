@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1215249702953063963}
   - component: {fileID: 1310890648196362785}
   - component: {fileID: -7759808999624362491}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: fireball-blue-big
   m_TagString: Bullet
   m_Icon: {fileID: 0}

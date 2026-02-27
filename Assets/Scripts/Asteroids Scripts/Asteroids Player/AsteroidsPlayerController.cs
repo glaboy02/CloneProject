@@ -19,6 +19,27 @@ public class AsteroidsPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        FixedBoundary();
+    }
+
+    private void FixedBoundary()
+    {
+        if (transform.position.x > 10f)
+        {
+            transform.position = new Vector3(-10f, transform.position.y, transform.position.z);
+        }
+        else if (transform.position.x < -10f)
+        {
+            transform.position = new Vector3(10f, transform.position.y, transform.position.z);
+        }
+        if (transform.position.y < -4f)
+        {
+            transform.position = new Vector3(transform.position.x, -4f, transform.position.z);
+        }
+        else if (transform.position.y > 5f)
+        {
+            transform.position = new Vector3(transform.position.x, 5f, transform.position.z);
+        }
 
     }
 
@@ -39,7 +60,7 @@ public class AsteroidsPlayerController : MonoBehaviour
         {
             Instantiate(projectilePrefab, transform.position, transform.rotation);
         }
-        
+
     }
 
 }
