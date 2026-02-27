@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class AsteroidsPlayerController : MonoBehaviour
 {
 
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private GameObject gameOverPanel;
     private Rigidbody2D rb;
     private float moveInputY;
     private float moveInputX;
@@ -14,6 +17,7 @@ public class AsteroidsPlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        gameOverPanel.SetActive(false); // Hide the game over panel at the start
     }
 
     // Update is called once per frame
@@ -59,6 +63,19 @@ public class AsteroidsPlayerController : MonoBehaviour
         if (context.performed)
         {
             Instantiate(projectilePrefab, transform.position, transform.rotation);
+        }
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("HugeAsteroid") || other.gameObject.CompareTag("LargeAsteroid") || other.gameObject.CompareTag("MediumAsteroid"))
+        {
+            Debug.Log("Player hit!");
+            // Implement player hit logic here (e.g., reduce health, trigger explosion, etc.)
+            GameManager.SetGamePaused(true); // Pause the game when the player is hit
+            gameOverPanel.SetActive(true); // Show the game over panel
+            Destroy(gameObject); // Destroy the player object
         }
 
     }

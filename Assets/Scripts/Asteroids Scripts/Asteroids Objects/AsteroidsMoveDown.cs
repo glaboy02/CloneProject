@@ -12,12 +12,18 @@ public class AsteroidsMoveDown : MonoBehaviour
 
     private void Start()
     {
+        if (GameManager.GameplayPaused) return;
         rb.linearVelocity = Vector2.down * speed;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.GameplayPaused)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            return;
+        }
         DestroyAsteroid();
     }
 
