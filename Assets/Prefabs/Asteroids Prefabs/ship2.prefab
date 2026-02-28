@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 279208458385402499}
   - component: {fileID: 8079675938926495142}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship2-flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 356777022256407234}
   - component: {fileID: 4814752349328152793}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship2-lines
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,8 +194,9 @@ GameObject:
   - component: {fileID: 6035118335278785448}
   - component: {fileID: 1457479189059599272}
   - component: {fileID: 735927502368728083}
+  - component: {fileID: 5630396742508821439}
   - component: {fileID: 6078586184011194541}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,7 +213,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1.75, y: 1.75, z: 1.75}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 279208458385402499}
@@ -407,6 +408,43 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!70 &5630396742508821439
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4206076348290516459}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 8.972003e-10, y: 0.0075262627}
+  m_Size: {x: 0.7300004, y: 0.47852597}
+  m_Direction: 1
 --- !u!114 &6078586184011194541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,4 +458,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AsteroidsPlayerController
   projectilePrefab: {fileID: 776287665614785649, guid: 01b4044913f7f0742b71c1949c6fe44d, type: 3}
-  moveSpeed: 5
+  moveSpeed: 10
+  scoreText: {fileID: 0}
+  gameOverPanel: {fileID: 0}
