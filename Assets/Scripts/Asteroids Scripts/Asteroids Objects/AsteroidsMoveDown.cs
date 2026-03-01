@@ -3,6 +3,8 @@ using UnityEngine;
 public class AsteroidsMoveDown : MonoBehaviour
 {
     [SerializeField] private float speed = 2f;
+    [SerializeField] private ParticleSystem explosionEffect;
+
     private Rigidbody2D rb;
 
     private void Awake()
@@ -42,6 +44,8 @@ public class AsteroidsMoveDown : MonoBehaviour
         {
             Debug.Log("Asteroid hit!");
             AsteroidsSpawner.Instance.DestroyAsteroid(gameObject);
+            Instantiate(explosionEffect, transform.position, transform.rotation); // Trigger explosion effect
+
             Destroy(other.gameObject); // Destroy the bullet as well
         }
     }
