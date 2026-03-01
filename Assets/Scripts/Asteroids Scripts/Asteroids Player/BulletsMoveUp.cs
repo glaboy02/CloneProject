@@ -12,7 +12,8 @@ public class BulletsMoveUp : MonoBehaviour
 
     private void Start()
     {
-        rb.linearVelocity = Vector2.up * speed;
+        rb.linearVelocity = -(Vector2)transform.up * speed;
+
     }
 
     // Update is called once per frame
@@ -23,9 +24,20 @@ public class BulletsMoveUp : MonoBehaviour
 
     private void DestroyBullet()
     {
-        if (transform.position.y > 8f) // Adjust this value based on your game's needs
+        // if (transform.position.y > 8f) // Adjust this value based on your game's needs
+        // {
+        //     Destroy(gameObject);
+        // }
+
+        Vector3 pos = transform.position;
+        if (pos.x > 9f || pos.x < -9f || pos.y > 5f || pos.y < -4f)
         {
             Destroy(gameObject);
         }
+    }
+
+    public void ShootBullet(Vector2 direction)
+    {
+        rb.linearVelocity = direction.normalized * speed;
     }
 }
