@@ -13,20 +13,10 @@ public class AsteroidsSpawner : MonoBehaviour
 
     [SerializeField] private GameObject[] asteroidPrefab;
     [SerializeField] private float spawnInterval = 5f;
-    private float xRange = 9f;
-    private int ySpawn = 9;
-    // private int index;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         StartCoroutine(SpawnAsteroidsWithDelay(spawnInterval));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void SpawnAsteroids(int index, bool firstAsteroid, Vector3 position, Quaternion rotation)

@@ -15,18 +15,10 @@ public class AsteroidsMoveDown : MonoBehaviour
     private void Start()
     {
         if (GameManager.GameplayPaused) return;
-        // rb.linearVelocity = Vector2.down * speed;
-        int xPosition = (int)gameObject.transform.position.x;
-        int yPosition = (int)gameObject.transform.position.y;
-        // if (yPosition < 0 && xPosition > 0)
-        // {
-        //     Debug.Log("Asteroid moving down and to the left");
-        //     rb.linearVelocity = -(Vector2)transform.right * speed;
-        // }
+
         rb.linearVelocity = -(Vector2)transform.up * speed;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (GameManager.GameplayPaused)
@@ -39,7 +31,7 @@ public class AsteroidsMoveDown : MonoBehaviour
 
     private void DestroyAsteroid()
     {
-        if (transform.position.y < -8f) // Adjust this value based on your game's needs
+        if (transform.position.y < -8f)
         {
             Debug.Log("Asteroid destroyed!");
             Destroy(gameObject);
