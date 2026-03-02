@@ -9,6 +9,8 @@ public class AsteroidsSpawner : MonoBehaviour
         Instance = this;
     }
 
+    [SerializeField] private GameObject[] spawnPoints;
+
     [SerializeField] private GameObject[] asteroidPrefab;
     [SerializeField] private float spawnInterval = 5f;
     private float xRange = 9f;
@@ -27,21 +29,23 @@ public class AsteroidsSpawner : MonoBehaviour
 
     }
 
-    private void SpawnAsteroids(int index, bool firstAsteroid, Vector3 position)
+    private void SpawnAsteroids(int index, bool firstAsteroid, Vector3 position, Quaternion rotation)
     {
         if (firstAsteroid)
         {
-            Instantiate(GetAsteroidIndex(index), RandomSpawnPosition(), Quaternion.identity);
+            Transform spawnTransform = RandomSpawnPosition();
+            Instantiate(GetAsteroidIndex(index), spawnTransform.position, spawnTransform.rotation);
         }
         else
         {
-            Instantiate(GetAsteroidIndex(index), position, Quaternion.identity);
+            Instantiate(GetAsteroidIndex(index), position, rotation);
         }
     }
 
-    private Vector3 RandomSpawnPosition()
+    private Transform RandomSpawnPosition()
     {
-        return new Vector3(Random.Range(-xRange, xRange), ySpawn, 0);
+        int spawnIndex = Random.Range(0, spawnPoints.Length);
+        return spawnPoints[spawnIndex].transform;
     }
 
     private GameObject GetAsteroidIndex(int index)
@@ -54,13 +58,13 @@ public class AsteroidsSpawner : MonoBehaviour
         if (asteroid.CompareTag("HugeAsteroid"))
         {
             // Handle Huge asteroid destruction logic
-            SpawnAsteroids(1, false, asteroid.transform.position); // Spawn large asteroids
+            SpawnAsteroids(1, false, asteroid.transform.position, asteroid.transform.rotation); // Spawn large asteroids
             Destroy(asteroid);
         }
         else if (asteroid.CompareTag("LargeAsteroid"))
         {
             // Handle Large asteroid destruction logic
-            SpawnAsteroids(2, false, asteroid.transform.position); // Spawn medium asteroids
+            SpawnAsteroids(2, false, asteroid.transform.position, asteroid.transform.rotation); // Spawn medium asteroids
             Destroy(asteroid);
         }
         else if (asteroid.CompareTag("MediumAsteroid"))
@@ -80,7 +84,7 @@ public class AsteroidsSpawner : MonoBehaviour
     {
         while (GameManager.GameplayPaused == false)
         {
-            SpawnAsteroids(0, true, Vector3.zero); // Spawn large asteroids
+            SpawnAsteroids(0, true, Vector3.zero, Quaternion.identity); // Spawn large asteroids
             yield return new WaitForSeconds(delay);
         }
     }

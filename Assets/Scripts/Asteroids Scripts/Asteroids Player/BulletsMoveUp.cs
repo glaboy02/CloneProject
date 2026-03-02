@@ -30,7 +30,7 @@ public class BulletsMoveUp : MonoBehaviour
         // }
 
         Vector3 pos = transform.position;
-        if (pos.x > 9f || pos.x < -9f || pos.y > 5f || pos.y < -4f)
+        if (pos.x > 10f || pos.x < -10f || pos.y > 7f || pos.y < -5f)
         {
             Destroy(gameObject);
         }
