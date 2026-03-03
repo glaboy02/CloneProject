@@ -9,12 +9,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI highScoreText;
     [SerializeField] private TextMeshProUGUI pongPlayer1ScoreText;
     [SerializeField] private TextMeshProUGUI pongPlayer2ScoreText;
+    [SerializeField] private TextMeshProUGUI asteroidsScoreText;
+    [SerializeField] private TextMeshProUGUI asteroidsHighScoreText;
+
+    [SerializeField] private GameObject restartButton;
+    [SerializeField] private GameObject backToMenuButton;
+
+
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject winPlayer1Panel;
     [SerializeField] private GameObject winPlayer2Panel;
     private int scoreFlappyBird;
     private int pongPlayer1Score;
     private int pongPlayer2Score;
+    private int scoreAsteroids;
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -32,8 +40,10 @@ public class GameManager : MonoBehaviour
         scoreFlappyBird = 0;
         pongPlayer1Score = 0;
         pongPlayer2Score = 0;
+        scoreAsteroids = 0;
         UpdateFlappyBirdUI();
         UpdatePongUI();
+        UpdateAsteroidsUI();
     }
 
     private void FixedUpdate()
@@ -52,12 +62,14 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoadedFlappyBird;
         SceneManager.sceneLoaded += OnSceneLoadedPong;
+        SceneManager.sceneLoaded += OnSceneLoadedAsteroids;
     }
 
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoadedFlappyBird;
         SceneManager.sceneLoaded -= OnSceneLoadedPong;
+        SceneManager.sceneLoaded -= OnSceneLoadedAsteroids;
     }
     public static bool GameplayPaused { get; private set; }
 
@@ -246,5 +258,85 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    #region Asteroids Management
+    private void OnSceneLoadedAsteroids(Scene scene, LoadSceneMode mode)
+    {
+        restartButton = GameObject.Find("Restart");
+        backToMenuButton = GameObject.Find("BackToMenu");
+        asteroidsScoreText = GameObject.Find("Score")?.GetComponent<TextMeshProUGUI>();
+        asteroidsHighScoreText = GameObject.Find("Highscore")?.GetComponent<TextMeshProUGUI>();
 
+        // Search through root GameObjects to find Game Over Canvas (works even if inactive)
+        GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+        foreach (GameObject root in rootObjects)
+        {
+            if (root.name == "Game Over Canvas")
+            {
+                gameOverPanel = root;
+                break;
+            }
+        }
+
+        UpdateAsteroidsUI();
+    }
+
+    private void UpdateAsteroidsUI()
+    {
+        if (asteroidsScoreText != null)
+        {
+            asteroidsScoreText.text = "Score: " + scoreAsteroids;
+        }
+
+        if (asteroidsHighScoreText != null && SaveManager.Instance != null)
+        {
+            asteroidsHighScoreText.text = "High Score: " + SaveManager.Instance.asteroidsHighScore;
+        }
+    }
+    public void GameStartAsteroids()
+    {
+        SetGamePaused(false);
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(false);
+            restartButton.SetActive(false);
+            backToMenuButton.SetActive(false);
+        }
+    }
+
+    public void GameOverAsteroids()
+    {
+        SetGamePaused(true);
+        Debug.Log("Game Over!");
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+            restartButton.SetActive(true);
+            backToMenuButton.SetActive(true);
+        }
+
+        if (SaveManager.Instance != null)
+        {
+            if (scoreAsteroids > SaveManager.Instance.asteroidsHighScore)
+            {
+                SaveManager.Instance.asteroidsHighScore = scoreAsteroids;
+                SaveManager.Instance.SaveAsteroidsHighScore();
+            }
+        }
+    }
+    public void ResetAsteroidsScore()
+    {
+        scoreAsteroids = 0;
+
+        UpdateAsteroidsUI();
+    }
+
+
+    public void IncreaseAsteroidsScore()
+    {
+        scoreAsteroids++;
+
+        UpdateAsteroidsUI();
+    }
+
+    #endregion
 }

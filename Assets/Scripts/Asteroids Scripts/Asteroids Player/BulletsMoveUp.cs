@@ -19,16 +19,16 @@ public class BulletsMoveUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.GameplayPaused)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            return;
+        }
         DestroyBullet();
     }
 
     private void DestroyBullet()
     {
-        // if (transform.position.y > 8f) // Adjust this value based on your game's needs
-        // {
-        //     Destroy(gameObject);
-        // }
-
         Vector3 pos = transform.position;
         if (pos.x > 10f || pos.x < -10f || pos.y > 7f || pos.y < -5f)
         {

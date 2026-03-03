@@ -73,13 +73,17 @@ public class MenuUIHandler : MonoBehaviour
 
     public void StartAstroids()
     {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ResetAsteroidsScore();
+        }
         SceneManager.LoadScene(6);
     }
     public void RestartAstroidsGame()
     {
         if (GameManager.Instance != null)
         {
-            // GameManager.Instance.GameStartAstroids();
+            GameManager.Instance.ResetAsteroidsScore();
         }
         SceneManager.LoadScene(6);
     }
@@ -120,8 +124,8 @@ public class MenuUIHandler : MonoBehaviour
                         // Clear snake data
                     break;
                 case 4: // Clear All data
-                    SaveManager.Instance.flappyBirdHighScore = 0;
-                    SaveManager.Instance.SaveFlappyBirdHighScore();
+                    SaveManager.Instance.asteroidsHighScore = 0;
+                    SaveManager.Instance.SaveAsteroidsHighScore();
                     break;
 
             }

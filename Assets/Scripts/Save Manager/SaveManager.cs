@@ -8,6 +8,7 @@ public class SaveManager : MonoBehaviour
     // public int longestRun;
     // public int currentRun;
     public int flappyBirdHighScore;
+    public int asteroidsHighScore;
 
     private void Awake()
     {
@@ -21,12 +22,14 @@ public class SaveManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         LoadFlappyBirdHighScore();
+        LoadAsteroidsHighScore();
     }
 
     [Serializable]
     class SaveData
     {
         public int flappyBirdHighScore;
+        public int asteroidsHighScore;
     }
 
     #region Flappy Bird High Score Save/Load
@@ -48,6 +51,29 @@ public class SaveManager : MonoBehaviour
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
             flappyBirdHighScore = data.flappyBirdHighScore;
+        }
+    }
+    #endregion
+
+    #region Asteroids High Score Save/Load
+    public void SaveAsteroidsHighScore()
+    {
+        SaveData data = new SaveData();
+        data.asteroidsHighScore = asteroidsHighScore;
+
+        string json = JsonUtility.ToJson(data);
+        File.WriteAllText(Application.persistentDataPath + "/asteroidssave.json", json);
+    }
+
+    public void LoadAsteroidsHighScore()
+    {
+        string path = Application.persistentDataPath + "/asteroidssave.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+            asteroidsHighScore = data.asteroidsHighScore;
         }
     }
     #endregion

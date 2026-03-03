@@ -7,7 +7,6 @@ public class AsteroidsPlayerController : MonoBehaviour
 
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private ParticleSystem explosionEffect;
     private Rigidbody2D rb;
@@ -25,7 +24,9 @@ public class AsteroidsPlayerController : MonoBehaviour
         }
 
         rb = GetComponent<Rigidbody2D>();
-        gameOverPanel.SetActive(false); // Hide the game over panel at the start
+
+        GameManager.Instance.GameStartAsteroids();
+        SaveManager.Instance.LoadAsteroidsHighScore();
     }
 
     // Update is called once per frame
@@ -85,12 +86,13 @@ public class AsteroidsPlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("HugeAsteroid") || other.gameObject.CompareTag("LargeAsteroid") || other.gameObject.CompareTag("MediumAsteroid"))
         {
-            Debug.Log("Player hit!");
             // Implement player hit logic here (e.g., reduce health, trigger explosion, etc.)
             Instantiate(explosionEffect, transform.position, transform.rotation); // Trigger explosion effect
             GameManager.SetGamePaused(true); // Pause the game when the player is hit
-            gameOverPanel.SetActive(true); // Show the game over panel
+            GameManager.Instance.GameOverAsteroids(); // Show the game over panel
             Destroy(gameObject); // Destroy the player object
+
+            SaveManager.Instance.SaveAsteroidsHighScore(); // Save the high score when the game is over
         }
 
     }

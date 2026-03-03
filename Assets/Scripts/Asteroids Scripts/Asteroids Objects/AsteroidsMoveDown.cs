@@ -41,11 +41,12 @@ public class AsteroidsMoveDown : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-            Debug.Log("Asteroid hit!");
             AsteroidsSpawner.Instance.DestroyAsteroid(gameObject);
             Instantiate(explosionEffect, transform.position, transform.rotation); // Trigger explosion effect
 
             Destroy(other.gameObject); // Destroy the bullet as well
+
+            GameManager.Instance.IncreaseAsteroidsScore(); // Add score for hitting the asteroid
         }
     }
 }
