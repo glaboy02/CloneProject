@@ -4,7 +4,6 @@ public class AsteroidsMoveDown : MonoBehaviour
 {
     [SerializeField] private float speed = 2f;
     [SerializeField] private ParticleSystem explosionEffect;
-
     private Rigidbody2D rb;
 
     private void Awake()
