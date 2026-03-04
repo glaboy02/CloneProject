@@ -12,6 +12,9 @@ TagManager:
   - LargeAsteroid
   - MediumAsteroid
   - SmallAsteroid
+  - Food
+  - Body
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -2,15 +2,32 @@ using UnityEngine;
 
 public class SnakeBody : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Vector3 _nextBodyPos;
+    private int _waitPreviousParts;
+
+    public void Initialize(Vector3 spawnPosition)
     {
-        
+        _nextBodyPos = spawnPosition;
     }
 
-    // Update is called once per frame
+    public void WaitHeadUpdateCycles(int value)
+    {
+        _waitPreviousParts = value;
+    }
+
+    public void SetTargetPosition(Vector3 targetPosition)
+    {
+        if (_waitPreviousParts > 0)
+        {
+            _waitPreviousParts--;
+            return;
+        }
+
+        _nextBodyPos = targetPosition;
+    }
+
     void Update()
     {
-        
+        transform.position = Vector3.MoveTowards(transform.position, _nextBodyPos, SnakeController.Vel * Time.deltaTime);
     }
 }
