@@ -4,6 +4,7 @@ public class AsteroidsMoveDown : MonoBehaviour
 {
     [SerializeField] private float speed = 2f;
     [SerializeField] private ParticleSystem explosionEffect;
+    [SerializeField] private int scoreValue; // Score value for destroying this asteroid
     private Rigidbody2D rb;
 
     private void Awake()
@@ -46,7 +47,7 @@ public class AsteroidsMoveDown : MonoBehaviour
 
             Destroy(other.gameObject); // Destroy the bullet as well
 
-            GameManager.Instance.IncreaseAsteroidsScore(); // Add score for hitting the asteroid
+            GameManager.Instance.IncreaseAsteroidsScore(scoreValue); // Add score for hitting the asteroid
         }
     }
 }

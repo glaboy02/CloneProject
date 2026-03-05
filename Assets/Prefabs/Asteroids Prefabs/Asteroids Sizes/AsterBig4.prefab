@@ -171,3 +171,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AsteroidsMoveDown
   speed: 2
   explosionEffect: {fileID: 2433282508523890284, guid: ad228293ef08a864d9b30cba8d697cde, type: 3}
+  scoreValue: 10

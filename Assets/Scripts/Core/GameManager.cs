@@ -331,9 +331,9 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void IncreaseAsteroidsScore()
+    public void IncreaseAsteroidsScore(int scoreValue)
     {
-        scoreAsteroids++;
+        scoreAsteroids += scoreValue;
 
         UpdateAsteroidsUI();
     }
