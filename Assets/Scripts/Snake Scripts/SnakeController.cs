@@ -11,6 +11,8 @@ public class SnakeController : MonoBehaviour
     [SerializeField] private GameObject foodPrefab;
 
     private List<Transform> _childList;
+    private List<SnakeBody> _bodyComponents;
+    private List<Vector3> _positionHistory;
     private Transform _appleInGame;
     private Vector3 _direction;
     private Vector3 _savedDirection;
@@ -22,8 +24,11 @@ public class SnakeController : MonoBehaviour
     void Start()
     {
         _childList = new List<Transform>();
+        _bodyComponents = new List<SnakeBody>();
+        _positionHistory = new List<Vector3>();
         _target = transform.position;
         _direction = Vector3.right;
+        _savedDirection = Vector3.right;
         _appleInGame = SpawnApple();
     }
 
@@ -48,6 +53,8 @@ public class SnakeController : MonoBehaviour
 
         if (transform.position != _target) return;
 
+        _positionHistory.Insert(0, _target);
+
         _target += _savedDirection;
 
         // ChecksOutOfBounds();
@@ -56,14 +63,21 @@ public class SnakeController : MonoBehaviour
 
     private void SetChildrenTargets()
     {
-        if (_childList == null) return;
-        if (_childList.Count > 0)
-        {
-            _childList[0].GetComponent<SnakeBody>().SetTargetPosition(transform.position);
+        // if (_childList == null) return;
+        // if (_childList.Count > 0)
+        // {
+        //     _childList[0].GetComponent<SnakeBody>().SetTargetPosition(transform.position);
 
-            for (int index = _childList.Count - 1; index > 0; index--)
+        //     for (int index = _childList.Count - 1; index > 0; index--)
+        //     {
+        //         _childList[index].GetComponent<SnakeBody>().SetTargetPosition(_childList[index - 1].position);
+        //     }
+        // }
+        for (int i = 0; i < _bodyComponents.Count; i++)
+        {
+            if (i < _positionHistory.Count)
             {
-                _childList[index].GetComponent<SnakeBody>().SetTargetPosition(_childList[index - 1].position);
+                _bodyComponents[i].SetTargetPosition(_positionHistory[i]);
             }
         }
     }
@@ -97,19 +111,22 @@ public class SnakeController : MonoBehaviour
         Destroy(_appleInGame.gameObject);
 
         // Spawn at the tail's position, or at the head if no body exists yet
-        Vector3 spawnPosition = _childList.Count > 0
-            ? _childList[_childList.Count - 1].position
-            : transform.position;
+        int historyIndex = _childList.Count;
+        Vector3 spawnPosition = historyIndex < _positionHistory.Count
+            ? _positionHistory[historyIndex]
+            : (_childList.Count > 0 ? _childList[_childList.Count - 1].position : transform.position);
+
 
         var obj = Instantiate(snakeBodyPrefab, spawnPosition, Quaternion.identity);
         var snakeBody = obj.GetComponent<SnakeBody>();
         snakeBody.Initialize(spawnPosition);
-        snakeBody.WaitHeadUpdateCycles(_childList.Count);
+        // snakeBody.WaitHeadUpdateCycles(_childList.Count);
 
         obj.GetComponent<BoxCollider2D>().enabled = false;
         StartCoroutine(ActivateBodyCollider(obj));
 
         _childList.Add(obj.transform);
+        _bodyComponents.Add(snakeBody);
 
         _appleInGame = SpawnApple();
     }

@@ -3,25 +3,25 @@ using UnityEngine;
 public class SnakeBody : MonoBehaviour
 {
     private Vector3 _nextBodyPos;
-    private int _waitPreviousParts;
+    // private int _waitPreviousParts;
 
     public void Initialize(Vector3 spawnPosition)
     {
         _nextBodyPos = spawnPosition;
     }
 
-    public void WaitHeadUpdateCycles(int value)
-    {
-        _waitPreviousParts = value;
-    }
+    // public void WaitHeadUpdateCycles(int value)
+    // {
+    //     _waitPreviousParts = value;
+    // }
 
     public void SetTargetPosition(Vector3 targetPosition)
     {
-        if (_waitPreviousParts > 0)
-        {
-            _waitPreviousParts--;
-            return;
-        }
+        // if (_waitPreviousParts > 0)
+        // {
+        //     _waitPreviousParts--;
+        //     return;
+        // }
 
         _nextBodyPos = targetPosition;
     }
